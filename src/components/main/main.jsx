@@ -1,31 +1,40 @@
 import React from 'react'
 import { useDispatch, useSelector} from 'react-redux';
-import {showDirector} from '../../redux/reducers';
-
-
+import {setDataActions} from '../../redux/actions';
+import faker from 'faker'
+import Table from '../table/table'
 
 
 export default function Main() {
   
-  const directors = useSelector(state => state.directors);
-  const language = useSelector(state => state.language);
   const dispatch = useDispatch();
-  const selectedDirector = useSelector(state => state.selectedDirector);
-
+  const data = useSelector(state => state.data);
+  const arr = function () {
+    const arr = []
+    for (let i = 1; i <= 10; i++) {
+      const user = faker.helpers.userCard()
+      const dateUser = faker.date.past(2)
+      user.active = faker.random.boolean()
+      user.dateRegistration = dateUser.toString()
+      user.getTime = Date.parse(dateUser)
+      user.id = i
+      arr.push(user)
+    }
+    return arr
+  }
   
-
-  const setIdDirectors = (id) => {
-    dispatch(showDirector(id))
-    
+  const setData = (arr) => {
+    dispatch(setDataActions(arr))
+    console.log(data)
+    console.log(arr())
   };
 
-  console.log(selectedDirector)
+
   return (
-    
     <div className='container_dir'>
-      Hello
-      <button onClick = {() => {setIdDirectors(3)}} > Yf;vb</button>
+      <button onClick = {() => {setData(arr)}} > Main</button>
+      <button onClick = {() => console.log(data)} > Main2</button>
+      <Table/>
     </div>
-    
   )
 }
