@@ -1,6 +1,6 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { useDispatch, useSelector} from 'react-redux';
-import {setDataActions} from '../../redux/actions';
+import {setDataActions, setFilterDataActions} from '../../redux/actions';
 import faker from 'faker'
 import Table from '../table/table'
 
@@ -9,9 +9,13 @@ export default function Main() {
   
   const dispatch = useDispatch();
   const data = useSelector(state => state.data);
-  const arr = function () {
+  const setData = (arr) => {
+    dispatch(setDataActions(arr))
+  };
+
+  const dataCreated = function () {
     const arr = []
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= 13; i++) {
       const user = faker.helpers.userCard()
       const dateUser = faker.date.past(2)
       user.active = faker.random.boolean()
@@ -20,21 +24,29 @@ export default function Main() {
       user.id = i
       arr.push(user)
     }
-    return arr
+    setData(arr)
   }
+
+  useEffect(dataCreated, [])
   
-  const setData = (arr) => {
-    dispatch(setDataActions(arr))
-    console.log(data)
-    console.log(arr())
+  const setFilterData = (value) => {
+    dispatch(setFilterDataActions(value))
+  };
+
+  const searchData = (e) => {
+    if (e.currentTarget.value) {
+      setFilterData(e.currentTarget.value)
+    } else {
+      setFilterData('')
+    }
   };
 
 
   return (
     <div className='container_dir'>
-      <button onClick = {() => {setData(arr)}} > Main</button>
       <button onClick = {() => console.log(data)} > Main2</button>
-      <Table/>
+      <input type="text" onChange={searchData}/>
+      <Table />
     </div>
   )
 }
