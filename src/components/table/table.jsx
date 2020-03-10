@@ -1,13 +1,11 @@
 import React from 'react'
 import {useSelector} from 'react-redux';
+import ButtonsTable from '../table/buttonsTable'
 
 
 export default function Table() {
-  const data = useSelector(state => state.data);
   const dataFilter = useSelector(state => state.dataFilter);
-  const dataTable = dataFilter ? dataFilter : data;
-  console.log(dataTable)
-  const table = dataTable.map(({ id, name, username,email, address, phone, active}) => (
+  const table = dataFilter.map(({ id, name, username,email, address, phone, active}) => (
     <tr key={id}>
       <td>{name}</td>
       <td>{username}</td>
@@ -24,16 +22,16 @@ export default function Table() {
     <div>
       Table
       <table className="table">
-        <caption>users table</caption>
+        <caption>Users</caption>
         <tbody>
           <tr>
-            <th>Name</th>
-            <th>Username</th>
-            <th>Email</th>
-            <th>City</th>
-            <th>Street</th>
-            <th>Phone</th>
-            <th>Active</th>
+            <th>Name<ButtonsTable id = {'name'}/></th>
+            <th>Username<ButtonsTable id = {'username'}/></th>
+            <th>Email<ButtonsTable id = {'email'}/></th>
+            <th>City<ButtonsTable id = {'address.city'}/></th>
+            <th>Street<ButtonsTable id = {'address.street'}/></th>
+            <th>Phone<ButtonsTable id = {'phone'}/></th>
+            <th>Active<ButtonsTable id = {'active'}/></th>
           </tr>
         {table }
         </tbody>

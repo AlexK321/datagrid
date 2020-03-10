@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import { useDispatch, useSelector} from 'react-redux';
+import { useDispatch} from 'react-redux';
 import {setDataActions, setFilterDataActions} from '../../redux/actions';
 import faker from 'faker'
 import Table from '../table/table'
@@ -8,7 +8,6 @@ import Table from '../table/table'
 export default function Main() {
   
   const dispatch = useDispatch();
-  const data = useSelector(state => state.data);
   const setData = (arr) => {
     dispatch(setDataActions(arr))
   };
@@ -44,7 +43,6 @@ export default function Main() {
 
   return (
     <div className='container_dir'>
-      <button onClick = {() => console.log(data)} > Main2</button>
       <input type="text" onChange={searchData}/>
       <Table />
     </div>
