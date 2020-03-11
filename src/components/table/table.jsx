@@ -22,7 +22,10 @@ export default function Table() {
   return (
     <div>
       <table className="table">
-        <caption>Users</caption>
+        <caption>Users
+          <div>({dataFilter.length} items found)
+          </div>
+        </caption>
         <tbody>
           <tr >
             <th>Name<ButtonsTable id = {'name'}/></th>

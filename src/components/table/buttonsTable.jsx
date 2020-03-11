@@ -4,8 +4,9 @@ import {sortDataDownActions,sortDataUpActions} from '../../redux/actions';
 import '../component.scss';
 
 
-export default function ButtonsTable(props) {
 
+export default function ButtonsTable(props) {
+  
   const dispatch = useDispatch();
 
   const dataSortUp = (event) => {

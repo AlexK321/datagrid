@@ -14,7 +14,7 @@ export default function Main() {
 
   const dataCreated = function () {
     const arr = []
-    for (let i = 1; i <= 13; i++) {
+    for (let i = 1; i <= 100; i++) {
       const user = faker.helpers.userCard()
       const dateUser = faker.date.past(2)
       user.active = faker.random.boolean()

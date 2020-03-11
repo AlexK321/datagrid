@@ -25,7 +25,7 @@ export default function Input() {
 
   const searchData = (e) => {
     if (e.currentTarget.value) {
-      setFilterData(e.currentTarget.value)
+      setFilterData(e.currentTarget.value.toLowerCase())
     } else {
       setFilterData('')
     }
@@ -40,7 +40,6 @@ export default function Input() {
         multiline
         variant="outlined"
         onChange={searchData}
-        color = "white"
         size = 'small'
       />
     </form>
