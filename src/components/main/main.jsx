@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react'
 import { useDispatch} from 'react-redux';
-import {setDataActions, setFilterDataActions} from '../../redux/actions';
+import {setDataActions} from '../../redux/actions';
 import faker from 'faker'
 import Table from '../table/table'
-
+import Input from '../input/input'
+import '../component.scss';
 
 export default function Main() {
-  
   const dispatch = useDispatch();
   const setData = (arr) => {
     dispatch(setDataActions(arr))
@@ -28,22 +28,14 @@ export default function Main() {
 
   useEffect(dataCreated, [])
   
-  const setFilterData = (value) => {
-    dispatch(setFilterDataActions(value))
-  };
-
-  const searchData = (e) => {
-    if (e.currentTarget.value) {
-      setFilterData(e.currentTarget.value)
-    } else {
-      setFilterData('')
-    }
-  };
-
-
   return (
-    <div className='container_dir'>
-      <input type="text" onChange={searchData}/>
+    <div className='main_container'>
+      <div className='block_title_input'>
+        <div className='title'>
+          DATA-GRID
+        </div>
+        <Input/>
+      </div>
       <Table />
     </div>
   )

@@ -1,9 +1,7 @@
-import directorsData from '../data/data';
 import {SET_DATA, SET_FILTER_DATA, DATA_SORT_DOWN, DATA_SORT_UP} from "../redux/actions";
 
 
 const initialState = {
-  directors:directorsData.directors,
   data:[],
   dataFilter:[]
 };
@@ -21,15 +19,16 @@ function elementsRootReducer(state = initialState, action) {
           return d.name.toLowerCase().includes(action.value)}) 
       };
     case DATA_SORT_UP :
+      const newArr = state.dataFilter.sort((a, b) => {
+        return a[action.id] > b[action.id] ? 1 : -1})
       return{
-        ...state, dataFilter: state.dataFilter.sort((a, b) => {
-          console.log(a[action.id])
-          return a[action.id] > b[action.id] ? 1 : -1})
+        ...state, dataFilter: [...newArr]
       };
     case DATA_SORT_DOWN :
+      const newArr2 = state.dataFilter.sort((a, b) => {
+        return a[action.id] > b[action.id] ? -1 : 1})
       return{
-        ...state, dataFilter: state.dataFilter.sort((a, b) => {
-          return a[action.id] > b[action.id] ? -1 : 1})
+        ...state, dataFilter: [...newArr2]
       };
     default:
       return state;

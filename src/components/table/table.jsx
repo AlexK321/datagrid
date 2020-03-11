@@ -1,6 +1,7 @@
 import React from 'react'
 import {useSelector} from 'react-redux';
 import ButtonsTable from '../table/buttonsTable'
+import '../component.scss';
 
 
 export default function Table() {
@@ -20,11 +21,10 @@ export default function Table() {
 
   return (
     <div>
-      Table
       <table className="table">
         <caption>Users</caption>
         <tbody>
-          <tr>
+          <tr >
             <th>Name<ButtonsTable id = {'name'}/></th>
             <th>Username<ButtonsTable id = {'username'}/></th>
             <th>Email<ButtonsTable id = {'email'}/></th>
